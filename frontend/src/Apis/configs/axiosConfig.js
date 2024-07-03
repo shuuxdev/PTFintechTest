@@ -1,12 +1,14 @@
-import axios from 'axios';
+import axios, { AxiosHeaders } from 'axios';
 import Cookies from 'js-cookie';
 import { store } from '../../Stores/store.js';
 import { logout } from '../../Slices/authSlice.js';
 // initializing the axios instance with custom configs
 const api = axios.create({
     withCredentials: true,
-    baseURL: "http://localhost:3000",
-
+    baseURL: "http://localhost:5000",
+    headers: {
+        "Content-Type": "application/json",
+    },
 });
 
 
