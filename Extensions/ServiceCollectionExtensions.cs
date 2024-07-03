@@ -67,4 +67,18 @@ public static class ServiceCollectionExtensions
         });
         return services;
     }
+    public static IServiceCollection AddCorsFromAppSetting(this IServiceCollection services, IConfiguration configuration)
+    {
+        var origin = configuration["AllowOrigin"];
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowFrontend",
+                builder =>
+                {
+                    builder.WithOrigins(origin ?? "http://localhost:3000").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
+                });
+        });
+        return services;
+    }
+
 }

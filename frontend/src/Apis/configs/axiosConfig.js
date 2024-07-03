@@ -3,9 +3,12 @@ import Cookies from 'js-cookie';
 import { store } from '../../Stores/store.js';
 import { logout } from '../../Slices/authSlice.js';
 // initializing the axios instance with custom configs
+
+
+let host = (import.meta.env.VITE_ASPNETCORE_URL);
 const api = axios.create({
     withCredentials: true,
-    baseURL: "http://localhost:5000",
+    baseURL: host,
     headers: {
         "Content-Type": "application/json",
     },

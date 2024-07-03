@@ -10,6 +10,7 @@ services:
       - "5000:5000"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - AllowOrigin=http://localhost:3000
       - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Username=postgres;Password=asdasd123;Database=task_management_system
     depends_on:
       - postgres

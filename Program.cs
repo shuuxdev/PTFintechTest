@@ -14,16 +14,9 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 });
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 builder.Services.AddPostgreSqlDbContext(builder.Configuration);
-builder.Services.AddScoped(typeof(Repository<>), typeof(Repository<>));
 builder.Services.AddJwtAuthentication(builder.Configuration);
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowFrontend",
-        builder =>
-        {
-            builder.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
-        });
-});
+builder.Services.AddCorsFromAppSetting(builder.Configuration);
+builder.Services.AddScoped(typeof(Repository<>), typeof(Repository<>));
 builder.Services.AddScoped<JwtHelper>();
 builder.Services.AddScoped<AuthenticationService>();
 builder.Services.AddScoped<TaskService>();
